@@ -2108,10 +2108,15 @@ main(int argc, char *argv[])
 	default:
 		usage();
 	} ARGEND;
-	if (argc > 0)
-		arg.v = argv[0];
-	else
-		arg.v = "https://duckduckgo.com";
+
+ 	if (argc > 0)
+ 		arg.v = argv[0];
+ 	else
+	#ifdef HOMEPAGE
+		arg.v = HOMEPAGE;
+	#else
+ 	arg.v = "about:blank";
+	#endif
 
 	setup();
 	c = newclient(NULL);
